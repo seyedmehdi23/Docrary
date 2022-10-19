@@ -1,0 +1,16 @@
+
+text
+book
+document
+to do
+note
+
+collector
+collabrator
+library
+writer
+archive
+manual
+base
+
+docbase
