@@ -1,7 +1,6 @@
 from flask import Flask, render_template, send_from_directory, redirect, url_for, request, session
 from os import listdir
 from os.path import isfile, join
-import json
 from markdown2 import markdown
 
 app = Flask(__name__)
@@ -63,9 +62,48 @@ def get_page(path):
                 "link" : pfile
             }
             pages.append(page)
-        return render_template("page.html", pages=pages, page_title=page_title, content=html_content, user_data=user_data)
+        return render_template("page.html", pages=pages, page_title=page_title, content=html_content, user_data=user_data, current_page=path)
     else:
         return redirect(url_for("login"))
+
+@app.route("/e<path:path>")
+def edit_page(path):
+    user_data = []
+    pages = []
+    html_content = ""
+
+    # if 'username' in session:
+    if True:
+        page_contents = open(pages_path + path, encoding="utf8")
+        html_content = page_contents.read()
+        # markdown(page_contents.read(), extras=["break-on-newline", "tables", "task_list", "fenced-code-blocks"])
+
+        page_title = path.split(".")[0]
+        pages_files = [f for f in listdir(pages_path) if isfile(join(pages_path, f))]
+        for pfile in pages_files:
+            title = pfile.split(".")[0]
+            page = {
+                "title" : title,
+                "link" : pfile
+            }
+            pages.append(page)
+        return render_template("edit_page.html", pages=pages, page_title=page_title, content=html_content, user_data=user_data, target_page=path)
+    else:
+        return redirect(url_for("login"))
+
+@app.route("/update_page", methods=["POST"])
+def update_page():
+    if True:
+        md_contents = request.form["md_contents"]
+        target_page = request.form["target_page"]
+
+        page_contents = open(pages_path + target_page, "w")
+        page_contents.write(md_contents)
+        
+        return redirect(f"/{target_page}")
+    else:
+        return redirect(url_for("login"))
+
 
 @app.route("/settings")
 def settings():

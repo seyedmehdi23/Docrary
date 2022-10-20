@@ -145,12 +145,23 @@
         <div class="col-lg-8 col-md-6 mb-md-0 mb-4">
           <div class="card" style="min-height: 100%;">
             <div class="card-header pb-0 mt-2">
-              {{ content|safe }}
-              {% if page_title != "Home" %}
-              <a class="btn bg-gradient-warning btn-fab btn-fab-mini btn-round" href="../e{{ current_page }}">
-                <i class="material-icons">edit</i>
-              </a>
-              {% endif %}
+              <form action="../update_page" method="post">
+                <div class="form-group" style="min-height: 100%;">
+                  <!-- <label for="exampleFormControlTextarea1"></label> -->
+                  <textarea class="form-control" name="md_contents" rows="15">{{ content|safe }}</textarea>
+                  <input name="target_page" value="{{ target_page }}" hidden>
+                  <div class="d-flex">
+                    <button class="btn bg-gradient-success w-45 mx-5" type="submit">
+                      Save
+                      <i class="material-icons">save</i>
+                    </button>
+                    <a class="btn bg-gradient-danger w-45 mx-5" href="/{{ target_page }}">
+                      Cancel
+                      <i class="material-icons">close</i>
+                    </a>
+                  </div>
+                </div>
+              </form>
               <br>
             </div>
             <div class="card-body px-0 pb-2">
