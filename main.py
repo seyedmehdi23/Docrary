@@ -2,17 +2,23 @@ from flask import Flask, render_template, send_from_directory, redirect, url_for
 from os import listdir
 from os.path import isfile, join
 from markdown2 import markdown
+import json
 
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 home_path = "contents/home.md"
 pages_path = "contents/pages/"
-users_path = "contents/users.json"
+microData_path = "contents/micro_data.json"
 
 @app.route("/assets/<path:path>")
 def send_assets(path):
     return send_from_directory("assets", path)
+
+@app.route("/contents/images/<path:path>")
+def send_images_contents(path):
+    return send_from_directory("contents/images", path)
+
 
 @app.route("/")
 def index():
@@ -24,11 +30,12 @@ def home():
     user_data = []
     pages = []
     html_content = ""
-
+    team = []
     # if 'username' in session:
     if True:
         home_contents = open(home_path, encoding="utf8")
-        html_content = markdown(home_contents.read(), extras=["break-on-newline", "tables", "task_list", "fenced-code-blocks"])
+        html_content = markdown(home_contents.read(), extras=["break-on-newline", "tables", "task_list", "fenced-code-blocks", 'md_mermaid'])
+        # html_content = markdown(home_contents.read(), extensions=["tables", "md_mermaid"])
 
         pages_files = [f for f in listdir(pages_path) if isfile(join(pages_path, f))]
         for pfile in pages_files:
@@ -38,7 +45,12 @@ def home():
                 "link" : pfile
             }
             pages.append(page)
-        return render_template("page.html", pages=pages, page_title="Home", content=html_content, user_data=user_data)
+        
+        micro_data_file = open(microData_path)
+        micro_data = micro_data_file.read()
+        roles = json.loads(micro_data)["Roles"]
+
+        return render_template("page.html", pages=pages, page_title="Home", content=html_content, user_data=user_data, team_roles=roles)
     else:
         return redirect(url_for("login"))
 
@@ -62,7 +74,12 @@ def get_page(path):
                 "link" : pfile
             }
             pages.append(page)
-        return render_template("page.html", pages=pages, page_title=page_title, content=html_content, user_data=user_data, current_page=path)
+
+        micro_data_file = open(microData_path)
+        micro_data = micro_data_file.read()
+        roles = json.loads(micro_data)["Roles"]
+
+        return render_template("page.html", pages=pages, page_title=page_title, content=html_content, user_data=user_data, current_page=path, team_roles=roles)
     else:
         return redirect(url_for("login"))
 
@@ -105,8 +122,8 @@ def update_page():
         return redirect(url_for("login"))
 
 
-@app.route("/settings")
-def settings():
+@app.route("/questions")
+def questions():
     pages = []
     user_data = []
     if True:
@@ -120,7 +137,7 @@ def settings():
             pages.append(page)
     else:
         return redirect(url_for("login"))
-    return render_template("settings.html", pages=pages, page_title="Settings", user_data=user_data)
+    return render_template("questions.html", pages=pages, page_title="Questions & Issues", user_data=user_data)
 
 @app.route("/login")
 def login():

@@ -1,0 +1,54 @@
+{
+    "team": [
+        {
+            "name": "Oskol",
+            "username": "oskol",
+            "password": "123",
+            "icon": "code"
+        }
+    ],
+    "Roles": [
+        {
+            "role": "Executive Manager",
+            "name": "Abas Porjavid",
+            "icon": "manage_accounts",
+            "icon_color" : "success"
+        },
+        {
+            "role": "Product Manager, Technical Author",
+            "name": "Seyed Mehdi Hosseini",
+            "icon": "engineering",
+            "icon_color" : "warning"
+        },
+        {
+            "role": "ServerCore, Database Developer",
+            "name": "Ali Milani",
+            "icon": "dns",
+            "icon_color" : "danger"
+        },
+        {
+            "role": "Development Operations",
+            "name": "Mohammad Amin Ebrahimi",
+            "icon": "dns",
+            "icon_color": "warning"
+        },
+        {
+            "role": "Server Socket, Cache Database Developer",
+            "name": "Seyed Mehdi Hosseini",
+            "icon": "settings_input_hdmi",
+            "icon_color" : "success"
+        },
+        {
+            "role": "Client Game Developer",
+            "name": "Saleh Bagheri",
+            "icon": "sports_esports",
+            "icon_color" : "primary"
+        },
+        {
+            "role": "CMS Developer",
+            "name": "Mohammad Javad Mosadegh",
+            "icon": "dashboard",
+            "icon_color" : "info"
+        }
+    ]
+}

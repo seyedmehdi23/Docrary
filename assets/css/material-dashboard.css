@@ -74,6 +74,10 @@
   font-family: 'Goolazir';
 }
 
+pre {
+  line-height: 2.6vh;
+}
+
 *,
 *::before,
 *::after {
@@ -2466,7 +2470,7 @@ progress {
   }
 }
 
-.table {
+table {
   --bs-table-bg: transparent;
   --bs-table-accent-bg: transparent;
   --bs-table-striped-color: #7b809a;
@@ -2482,22 +2486,22 @@ progress {
   border-color: #f0f2f5;
 }
 
-.table> :not(caption)>*>* {
+table> :not(caption)>*>* {
   padding: 0.5rem 0.5rem;
   background-color: var(--bs-table-bg);
   border-bottom-width: 1px;
   box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
 }
 
-.table>tbody {
+table>tbody {
   vertical-align: inherit;
 }
 
-.table>thead {
+table>thead {
   vertical-align: bottom;
 }
 
-.table> :not(:first-child) {
+table> :not(:first-child) {
   border-top: 2px solid currentColor;
 }
 
@@ -23206,7 +23210,7 @@ hr.horizontal.gray-light {
 .navbar-vertical.navbar-expand-xs .navbar-collapse {
   display: block;
   overflow: auto;
-  height: calc(100vh - 360px);
+  height: calc(100vh - 150px);
 }
 
 .navbar-vertical.navbar-expand-xs>[class*="container"] {
@@ -25265,46 +25269,46 @@ hr.horizontal.gray-light {
   color: #329874;
 }
 
-.table thead th {
-  padding: 0.75rem 1.5rem;
+table thead th {
+  padding: 0.5rem 0.5rem;
   text-transform: capitalize;
   letter-spacing: 0px;
   border-bottom: 1px solid #f0f2f5;
 }
 
-.table th {
+table th {
   font-weight: 600;
 }
 
-.table td .progress {
+table td .progress {
   height: 3px;
   width: 120px;
   margin: 0;
 }
 
-.table td .progress .progress-bar {
+table td .progress .progress-bar {
   height: 3px;
 }
 
-.table td,
-.table th {
+table td,
+table th {
   white-space: nowrap;
 }
 
-.table.align-items-center td,
-.table.align-items-center th {
+table.align-items-center td,
+table.align-items-center th {
   vertical-align: middle;
 }
 
-.table tbody tr:last-child td {
+table tbody tr:last-child td {
   border-width: 0;
 }
 
-.table> :not(:last-child)> :last-child>* {
+table> :not(:last-child)> :last-child>* {
   border-bottom-color: #f0f2f5;
 }
 
-.table> :not(:first-child) {
+table> :not(:first-child) {
   border-top: 1px solid currentColor;
 }
 
@@ -25560,8 +25564,7 @@ h2,
 h3,
 .h3,
 .h3 {
-  font-weight: 600;
-  font-family: "Roboto Slab", sans-serif;
+  /* font-weight: 600; */
 }
 
 h4,
@@ -25573,7 +25576,7 @@ h5,
 h6,
 .h6,
 .h6 {
-  font-weight: 600;
+  /* font-weight: 600; */
 }
 
 h1,

@@ -38,7 +38,7 @@
         aria-hidden="true" id="iconSidenav">close</i>
       <a class="navbar-brand m-0" href="#">
         <img src="../assets/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo">
-        <span class="ms-1 font-weight-bold text-white">Docrary</span>
+        <span class="ms-1 font-weight-bold text-white">Document Library</span>
       </a>
     </div>
     <hr class="horizontal light mt-0 mb-2">
@@ -85,11 +85,11 @@
         {% endif %}
         {% endfor %}
         <li class="nav-item">
-          <a class="nav-link text-white" href="/settings">
+          <a class="nav-link text-white" href="/questions">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">settings</i>
+              <i class="material-icons opacity-10">live_help</i>
             </div>
-            <span class="nav-link-text ms-1">Settings</span>
+            <span class="nav-link-text ms-1">Questions & Issues</span>
           </a>
         </li>
       </ul>
@@ -146,11 +146,15 @@
           <div class="card" style="min-height: 100%;">
             <div class="card-header pb-0 mt-2">
               <form action="../update_page" method="post">
+                {% if page_title == "Home" %}
                 <div class="form-group" style="min-height: 100%;">
+                {% else %}
+                <div class="form-group" style="min-height: 100%;" dir="rtl">
+                {% endif %}
                   <!-- <label for="exampleFormControlTextarea1"></label> -->
-                  <textarea class="form-control" name="md_contents" rows="15">{{ content|safe }}</textarea>
+                  <textarea class="form-control" name="md_contents" rows="17">{{ content|safe }}</textarea>
                   <input name="target_page" value="{{ target_page }}" hidden>
-                  <div class="d-flex">
+                  <div class="d-flex mt-4">
                     <button class="btn bg-gradient-success w-45 mx-5" type="submit">
                       Save
                       <i class="material-icons">save</i>
@@ -164,8 +168,7 @@
               </form>
               <br>
             </div>
-            <div class="card-body px-0 pb-2">
-            </div>
+            
           </div>
         </div>
         <div class="col-lg-4 col-md-6">
@@ -179,7 +182,7 @@
             </div>
             <div class="card-body p-3">
               <div class="timeline timeline-one-side">
-                <div class="timeline-block mb-3">
+                <!-- <div class="timeline-block mb-3">
                   <span class="timeline-step">
                     <i class="material-icons text-success text-gradient">notifications</i>
                   </span>
@@ -232,40 +235,13 @@
                     <h6 class="text-dark text-sm font-weight-bold mb-0">New order #9583120</h6>
                     <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">17 DEC</p>
                   </div>
-                </div>
+                </div> -->
               </div>
               <br>
             </div>
           </div>
         </div>
       </div>
-      <footer class="footer py-4">
-        <div class="container-fluid">
-          <br>
-          <div class="row align-items-center justify-content-lg-between">
-            <div class="col-lg-6 mb-lg-0 mb-4">
-              <div class="copyright text-center text-sm text-muted text-lg-start">
-                made with <i class="material-icons">favorite</i> by
-                <a href="https://github.com/SeyedMehdi23" class="font-weight-bold" target="_blank">Seyed Mehdi
-                  Hosseini</a>
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-                <li class="nav-item">
-                  <a href="#" class="nav-link text-muted" target="_blank">About</a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link text-muted" target="_blank">Github Page</a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link text-muted" target="_blank">Buy Me a Coffe</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   </main>
   <div class="fixed-plugin">
